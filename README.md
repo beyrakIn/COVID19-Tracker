@@ -7,7 +7,7 @@
   </a>
 </p>
 
-> COVID19 corna tracker
+> COVID19 corona tracker
 
 ### 🏠 [Homepage](https://github.com/kefranabg/readme-md-generator#readme)
 
