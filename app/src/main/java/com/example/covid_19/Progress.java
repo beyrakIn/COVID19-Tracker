@@ -1,27 +1,28 @@
 package com.example.covid_19;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.view.LayoutInflater;
+import android.content.Context;
 
 public class Progress {
-    Activity activity;
-    ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
+    private Context context;
 
-    public Progress(Activity activity) {
-        this.activity = activity;
-    }
-
-    void start() {
-        LayoutInflater inflater = activity.getLayoutInflater();
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.show();
+    public Progress(Context context) {
+        this.context = context;
+        progressDialog = new ProgressDialog(context);
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        progressDialog.setContentView(inflater.inflate(R.layout.progress, null));
     }
 
-    void stop() {
+    public void start() {
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress);
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent
+        );
+        progressDialog.setCancelable(false);
+    }
+
+    public void stop() {
         progressDialog.dismiss();
     }
 }

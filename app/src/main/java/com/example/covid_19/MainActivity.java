@@ -3,11 +3,13 @@ package com.example.covid_19;
 import android.app.AlertDialog;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
@@ -18,6 +20,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.covid_19.api.methods.GetStatistic;
 import com.example.covid_19.api.models.BaseResponse;
 import com.example.covid_19.api.models.CaseResponse;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.List;
 
@@ -30,9 +40,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private RelativeLayout rLayout;
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
-    private List<CaseResponse> cases;// = new ArrayList<>();
+    private List<CaseResponse> cases;
     private CaseAdapter adapter;
     private SearchView searchView;
+    private AdView adView;
+    private InterstitialAd mInterstitialAd;
 
 
     @Override
@@ -45,11 +57,66 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         rLayout = findViewById(R.id.layout);
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
         recyclerView = findViewById(R.id.recycler);
+        adView = findViewById(R.id.main_activity_adView);
         dialog = new Progress(this);
+        dialog.start();
 
         setSwipeLayout();
         setActionBar();
+        loadAd();
         loadData();
+    }
+
+    private void loadInAd() {
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this, "ca-app-pub-2248916584991987/6058563152", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mInterstitialAd = null;
+            }
+        });
+
+//        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+//            @Override
+//            public void onAdShowedFullScreenContent() {
+//                mInterstitialAd = null;
+//                Log.d("TAG", "The ad was shown.");
+//            }
+//        });
+
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(MainActivity.this);
+        } else {
+            Log.d("TAG", "The interstitial ad wasn't ready yet.");
+        }
+    }
+
+    private void loadAd() {
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                Toast.makeText(getApplicationContext(), "Thanks)", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                loadAd();
+            }
+        });
     }
 
     private void loadData() {
@@ -61,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         assert response.body() != null;
                         cases = response.body().getCaseResponse();
                         setRecycler();
+                        dialog.stop();
                     } else {
                         loadData();
                     }
@@ -79,7 +147,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
     private void setSwipeLayout() {
-        refreshLayout.setOnRefreshListener(this::loadData);
+        refreshLayout.setOnRefreshListener(() -> {
+            loadData();
+            loadInAd();
+        });
     }
 
 

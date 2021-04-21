@@ -2,20 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
-    <androidx.cardview.widget.CardView
+    <com.wang.avi.AVLoadingIndicatorView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
-        app:cardCornerRadius="20sp">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25sp" />
-
-    </androidx.cardview.widget.CardView>
+        android:layout_gravity="center"
+        app:indicatorColor="@color/purple_500"
+        app:indicatorName="BallScaleMultipleIndicator" />
 
 </RelativeLayout>

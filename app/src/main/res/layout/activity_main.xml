@@ -9,8 +9,8 @@
     tools:context=".MainActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
         android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -21,7 +21,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+        android:id="@+id/main_activity_adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -29,4 +29,6 @@
         ads:adUnitId="ca-app-pub-2248916584991987/2941445224">
     </com.google.android.gms.ads.AdView>
 
+    <!--    ca-app-pub-2248916584991987/2941445224 REAL-->
+    <!--    ca-app-pub-3940256099942544/6300978111 FAKE-->
 </RelativeLayout>
