@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
         <item>@font/anton</item>
         <item>@font/coiny</item>
+        <item>@font/lato_bold</item>
         <item>@font/martel_sans_bold</item>
-        <item>@font/montserrat_semi_bold</item>
+        <item>@font/roboto_medium</item>
     </array>
 </resources>

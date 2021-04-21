@@ -8,12 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CaseModel extends RecyclerView.ViewHolder {
-    LinearLayout linearLayout;
-    TextView countryName;
+    TextView countryName, newCase, newRecovered, population;
 
     public CaseModel(@NonNull View itemView) {
         super(itemView);
-        linearLayout = itemView.findViewById(R.id.cases_card_view);
         countryName = itemView.findViewById(R.id.case_country_name);
+        newCase = itemView.findViewById(R.id.cases_new_case);
+        newRecovered = itemView.findViewById(R.id.cases_new_recovered);
+        population = itemView.findViewById(R.id.case_country_population);
     }
 }

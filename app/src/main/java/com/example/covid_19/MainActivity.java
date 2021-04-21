@@ -37,7 +37,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private Progress dialog;
-    private RelativeLayout rLayout;
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     private List<CaseResponse> cases;
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 //        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //        StrictMode.setThreadPolicy(policy);
 
-        rLayout = findViewById(R.id.layout);
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
         recyclerView = findViewById(R.id.recycler);
         adView = findViewById(R.id.main_activity_adView);

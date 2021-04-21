@@ -1,5 +1,6 @@
 package com.example.covid_19;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
@@ -10,12 +11,20 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.covid_19.api.models.CaseResponse;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,19 +50,60 @@ public class CaseAdapter extends RecyclerView.Adapter<CaseModel> implements Filt
 
     @Override
     public void onBindViewHolder(@NonNull CaseModel holder, int position) {
-        CaseResponse object = cases.get(position);
-        holder.countryName.setText(object.getCountry());
-//        holder.linearLayout.addView(setTextView("Country", object.getCountry(), context));
-//        holder.linearLayout.addView(setTextView("Total Cases", object.getCases(), context));
-//        holder.linearLayout.addView(setTextView("Total Deaths", object.getDeaths(), context));
-//        holder.linearLayout.addView(setTextView("Total Recovered", object.getRecovered(), context));
-//        holder.linearLayout.addView(setTextView("New Cases", object.getNewCases(), context));
-//        holder.linearLayout.addView(setTextView("New Deaths", object.getNewDeaths(), context));
-//        holder.linearLayout.addView(setTextView("New Recovered", object.getNewRecovered(), context));
-//        holder.linearLayout.addView(setTextView("Active case", object.getActiveCase(), context));
-//        holder.linearLayout.addView(setTextView("Critical case", object.getCritical(), context));
-//        holder.linearLayout.addView(setTextView("Additional", object.getAdditional(), context));
-//        holder.linearLayout.addView(setTextView("Update date", object.getLast_updated(), context));
+        CaseResponse caseResponse = cases.get(position);
+        holder.countryName.setText("\t" + caseResponse.getCountry().replaceAll("-", " "));
+        holder.population.setText("\t" + String.valueOf((int) caseResponse.getPopulation()));
+        holder.newCase.setText(caseResponse.getCases().getNew());
+        holder.newRecovered.setText(String.valueOf((int) caseResponse.getCases().getRecovered()));
+
+        holder.itemView.setOnClickListener(v -> {
+            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            Dialog dialog = new Dialog(activity);
+            View view = activity.getLayoutInflater().inflate(R.layout.detail_page, null);
+            AdView adView = new AdView(context);
+            adView.setAdUnitId("ca-app-pub-2248916584991987/2941445224");
+            adView.setAdSize(AdSize.FULL_BANNER);
+            MobileAds.initialize(context, initializationStatus -> {
+            });
+
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdClicked() {
+                    super.onAdClicked();
+                    Toast.makeText(context, "Thanks)", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    super.onAdFailedToLoad(loadAdError);
+                }
+            });
+
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+            LinearLayout linearLayout = view.findViewById(R.id.detail_page_linear_layout);
+
+            linearLayout.addView(setTextView("Country", caseResponse.getCountry().replaceAll("-", " "), context));
+            linearLayout.addView(setTextView("continent", caseResponse.getContinent(), context));
+            linearLayout.addView(setTextView("Total Cases", String.valueOf(caseResponse.getCases().getTotal()), context));
+            linearLayout.addView(setTextView("New Cases", String.valueOf(caseResponse.getCases().getNew()), context));
+            linearLayout.addView(setTextView("Total Deaths", String.valueOf(caseResponse.getDeaths().getTotal()), context));
+            linearLayout.addView(setTextView("New Deaths", String.valueOf(caseResponse.getDeaths().getNew()), context));
+            linearLayout.addView(setTextView("Total Recovered", String.valueOf(caseResponse.getCases().getRecovered()), context));
+            linearLayout.addView(setTextView("Active case", String.valueOf(caseResponse.getCases().getActive()), context));
+            linearLayout.addView(setTextView("Critical case", String.valueOf(caseResponse.getCases().getCritical()), context));
+            linearLayout.addView(setTextView("tot cases / 1m pop", String.valueOf(caseResponse.getCases().get1M_pop()), context));
+            linearLayout.addView(setTextView("Deaths / 1m pop", String.valueOf(caseResponse.getDeaths().get1M_pop()), context));
+            linearLayout.addView(setTextView("Total Tests", String.valueOf(caseResponse.getTests().getTotal()), context));
+            linearLayout.addView(setTextView("Tests / 1m pop", String.valueOf(caseResponse.getTests().get1M_pop()), context));
+            linearLayout.addView(setTextView("Population", String.valueOf((int) caseResponse.getPopulation()), context));
+            linearLayout.addView(setTextView("Update date", String.valueOf(caseResponse.getDay()), context));
+            linearLayout.addView(setTextView("Update time", String.valueOf(caseResponse.getTime()), context));
+            linearLayout.addView(adView);
+
+            dialog.setContentView(view);
+            dialog.show();
+        });
     }
 
     @Override
@@ -120,5 +170,6 @@ public class CaseAdapter extends RecyclerView.Adapter<CaseModel> implements Filt
         linearLayout.addView(desc);
         return linearLayout;
     }
+
 
 }
