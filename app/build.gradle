@@ -7,11 +7,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.covid_19"
+        applicationId defaultApplicationId
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 3
         versionName '1.3.3'
+        multiDexEnabled true
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,10 +33,37 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.android.gms:play-services-ads:19.7.0'
-    testImplementation 'junit:junit:4.13.1'
+    implementation 'com.google.android.gms:play-services-ads:20.0.0'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //Add
+    implementation 'com.wang.avi:library:2.1.3'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //Recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+
+    // Gson
+    implementation "com.google.code.gson:gson:2.8.6"
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    // Paging
+    implementation "androidx.paging:paging-runtime:2.1.2"
+
+    //Rx
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 }

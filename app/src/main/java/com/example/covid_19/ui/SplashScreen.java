@@ -1,4 +1,4 @@
-package com.example.covid_19;
+package com.example.covid_19.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,11 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.covid_19.MainActivity;
+import com.example.covid_19.R;
+
 public class SplashScreen extends AppCompatActivity {
-    final Integer TIME = 2000;
+    final Integer TIME = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,11 +6,7 @@
         android:id="@+id/app_bar_search"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
-        app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.SearchView" />
-    <item
-        android:id="@+id/refresh_item"
-        android:title="Refresh"
-        android:visible="false"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
 </menu>

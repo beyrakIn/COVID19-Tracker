@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.view.LayoutInflater;
 
-public class CustomProgressDialog {
+public class Progress {
     Activity activity;
     ProgressDialog progressDialog;
 
-    public CustomProgressDialog(Activity activity) {
+    public Progress(Activity activity) {
         this.activity = activity;
     }
 
