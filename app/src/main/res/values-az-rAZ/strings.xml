@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">COVID 19</string>
+    <!--    -->
+    <string name="country">Ölkə</string>
+    <string name="continent">qitə</string>
+    <string name="total_cases">Ümumi yoluxan</string>
+    <string name="new_cases">Yeni yoluxan</string>
+    <string name="total_deaths">Ümumi Ölüm</string>
+    <string name="new_deaths">Yeni Ölüm halı</string>
+    <string name="total_recovered">Sağalan</string>
+    <string name="active_case">Aktiv koronavirus xəstəsi</string>
+    <string name="critical_case">Kritik koronavirus xəstəsi</string>
+    <string name="cases1mpop">Ümumi yoluxan / 1 milyon əhali</string>
+    <string name="deaths1mpop">Ölümlər / 1 milyon əhali</string>
+    <string name="total_tests">Vaksinasiya</string>
+    <string name="tests1mpop">Vaksinasiya / 1 milyon əhali</string>
+    <string name="population">Əhali</string>
+    <string name="update_date">yeniləmə tarixi</string>
+    <string name="update_time">Yeniləmə vaxtı</string>
+
+<!--
+    <string name="country"><string>
+    <string name="continent"></string>
+    <string name="total_cases"></string>
+    <string name="new_cases"></string>
+    <string name="total_deaths"></string>
+    <string name="new_deaths"></string>
+    <string name="total_recovered"></string>
+    <string name="active_case"></string>
+    <string name="critical_case"></string>
+    <string name="cases1mpop"></string>
+    <string name="deaths1mpop"></string>
+    <string name="total_tests"></string>
+    <string name="tests1mpop"></string>
+    <string name="population"></string>
+    <string name="update_date"></string>
+    <string name="update_time"></string>
+    -->
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">COVID 19</string>
+    <!--    -->
+    <string name="country">Ülke</string>
+    <string name="continent">kıta</string>
+    <string name="total_cases">Toplam Vakalar</string>
+    <string name="new_cases">Yeni Vakalar</string>
+    <string name="total_deaths">Toplam Ölümler</string>
+    <string name="new_deaths">Yeni Ölümler</string>
+    <string name="total_recovered">Toplam Kurtarılan</string>
+    <string name="active_case">Aktif Vaka</string>
+    <string name="critical_case">Kritik Vaka</string>
+    <string name="cases1mpop">Toplam Vaka / 1 milyon nüfus</string>
+    <string name="deaths1mpop">Ölümler / 1 milyon nüfus</string>
+    <string name="total_tests">Toplam Testler</string>
+    <string name="tests1mpop">Testler / 1 milyon nüfus</string>
+    <string name="population">Nüfus</string>
+    <string name="update_date">Güncelleme Tarihi</string>
+    <string name="update_time">Güncelleme zamanı</string>
+</resources>

@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">COVID 19</string>
+    <!--    -->
+    <string name="country">Country</string>
+    <string name="continent">continent</string>
+    <string name="total_cases">Total Cases</string>
+    <string name="new_cases">New Cases</string>
+    <string name="total_deaths">Total Deaths</string>
+    <string name="new_deaths">New Deaths</string>
+    <string name="total_recovered">Total Recovered</string>
+    <string name="active_case">Active case</string>
+    <string name="critical_case">Critical case</string>
+    <string name="cases1mpop">tot cases / 1m </string>
+    <string name="deaths1mpop">Deaths / 1m pop</string>
+    <string name="total_tests">Total Tests</string>
+    <string name="tests1mpop">Tests / 1m pop</string>
+    <string name="population">Population</string>
+    <string name="update_date">Update date</string>
+    <string name="update_time">Update time</string>
 </resources>

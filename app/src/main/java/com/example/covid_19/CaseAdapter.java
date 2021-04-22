@@ -61,7 +61,8 @@ public class CaseAdapter extends RecyclerView.Adapter<CaseModel> implements Filt
             Dialog dialog = new Dialog(activity);
             View view = activity.getLayoutInflater().inflate(R.layout.detail_page, null);
             AdView adView = new AdView(context);
-            adView.setAdUnitId("ca-app-pub-2248916584991987/2941445224");
+            adView.setAdUnitId("ca-app-pub-2248916584991987/2941445224"); //REAL
+//            adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");   //FAKE
             adView.setAdSize(AdSize.FULL_BANNER);
             MobileAds.initialize(context, initializationStatus -> {
             });
@@ -83,22 +84,22 @@ public class CaseAdapter extends RecyclerView.Adapter<CaseModel> implements Filt
             adView.loadAd(adRequest);
             LinearLayout linearLayout = view.findViewById(R.id.detail_page_linear_layout);
 
-            linearLayout.addView(setTextView("Country", caseResponse.getCountry().replaceAll("-", " "), context));
-            linearLayout.addView(setTextView("continent", caseResponse.getContinent(), context));
-            linearLayout.addView(setTextView("Total Cases", String.valueOf(caseResponse.getCases().getTotal()), context));
-            linearLayout.addView(setTextView("New Cases", String.valueOf(caseResponse.getCases().getNew()), context));
-            linearLayout.addView(setTextView("Total Deaths", String.valueOf(caseResponse.getDeaths().getTotal()), context));
-            linearLayout.addView(setTextView("New Deaths", String.valueOf(caseResponse.getDeaths().getNew()), context));
-            linearLayout.addView(setTextView("Total Recovered", String.valueOf(caseResponse.getCases().getRecovered()), context));
-            linearLayout.addView(setTextView("Active case", String.valueOf(caseResponse.getCases().getActive()), context));
-            linearLayout.addView(setTextView("Critical case", String.valueOf(caseResponse.getCases().getCritical()), context));
-            linearLayout.addView(setTextView("tot cases / 1m pop", String.valueOf(caseResponse.getCases().get1M_pop()), context));
-            linearLayout.addView(setTextView("Deaths / 1m pop", String.valueOf(caseResponse.getDeaths().get1M_pop()), context));
-            linearLayout.addView(setTextView("Total Tests", String.valueOf(caseResponse.getTests().getTotal()), context));
-            linearLayout.addView(setTextView("Tests / 1m pop", String.valueOf(caseResponse.getTests().get1M_pop()), context));
-            linearLayout.addView(setTextView("Population", String.valueOf((int) caseResponse.getPopulation()), context));
-            linearLayout.addView(setTextView("Update date", String.valueOf(caseResponse.getDay()), context));
-            linearLayout.addView(setTextView("Update time", String.valueOf(caseResponse.getTime()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.country), caseResponse.getCountry().replaceAll("-", " "), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.continent), caseResponse.getContinent(), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.total_cases), String.valueOf((int) caseResponse.getCases().getTotal()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.new_cases), String.valueOf(caseResponse.getCases().getNew()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.total_deaths), String.valueOf(caseResponse.getDeaths().getTotal()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.new_deaths), String.valueOf(caseResponse.getDeaths().getNew()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.total_recovered), String.valueOf((int) caseResponse.getCases().getRecovered()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.active_case), String.valueOf((int) caseResponse.getCases().getActive()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.critical_case), String.valueOf(caseResponse.getCases().getCritical()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.cases1mpop), String.valueOf(caseResponse.getCases().get1M_pop()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.deaths1mpop), String.valueOf(caseResponse.getDeaths().get1M_pop()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.total_tests), String.valueOf((int) caseResponse.getTests().getTotal()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.tests1mpop), String.valueOf(caseResponse.getTests().get1M_pop()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.population), String.valueOf((int) caseResponse.getPopulation()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.update_date), String.valueOf(caseResponse.getDay()), context));
+            linearLayout.addView(setTextView(context.getResources().getString(R.string.update_time), String.valueOf(caseResponse.getTime()), context));
             linearLayout.addView(adView);
 
             dialog.setContentView(view);
